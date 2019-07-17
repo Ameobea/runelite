@@ -82,6 +82,14 @@ public class GELoggerPlugin extends Plugin
 		boolean buying = offer.getState() == GrandExchangeOfferState.BOUGHT
 				|| offer.getState() == GrandExchangeOfferState.BUYING
 				|| offer.getState() == GrandExchangeOfferState.CANCELLED_BUY;
+
+		log.info("offer: ");
+		log.info(offer.getState().toString());
+		log.info("total quantity: ");
+		log.info(String.valueOf(offer.getTotalQuantity()));
+		log.info("quantity sold: ");
+		log.info(String.valueOf(offer.getQuantitySold()));
+
 		if (offer.getState() == GrandExchangeOfferState.EMPTY)
 		{
 			logMerch(latest_offers.get(offerEvent.getSlot()));
@@ -109,6 +117,13 @@ public class GELoggerPlugin extends Plugin
 			catch (IOException e)
 			{
 				e.printStackTrace();
+			}
+		} else {
+			log.info("Got an EMPTY slot with items and amounts");
+			if (item == null) {
+				log.info("  item is null");
+			} else {
+				log.info(item.toString());
 			}
 		}
 	}
